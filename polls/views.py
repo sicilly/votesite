@@ -8,8 +8,11 @@ from django.http import Http404
 # Create your views here.
 
 
+# 使用通用视图ListView（作为父类被继承） 显示一个对象的列表
 class IndexView(generic.ListView):
+    # 指定模板名
     template_name = 'polls/index.html'
+    # 上下文变量
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
@@ -17,13 +20,17 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('-pub_date')[:5]
 
 
+# 使用通用视图DetailView（作为父类被继承）显示特定类型对象的详细页面
 class DetailView(generic.DetailView):
+    # 每一种通用视图都需要知道它要作用在哪个模型上，这通过model属性提供。
     model = Question
+    # 指定模板名
     template_name = 'polls/detail.html'
 
 
 class ResultsView(generic.DetailView):
     model = Question
+    # 指定模板名
     template_name = 'polls/results.html'
 
 

@@ -8,7 +8,9 @@ class ChoiceInline(admin.TabularInline):
     extra = 3
 
 
+# 创建一个继承admin.ModelAdmin的模型管理类
 class QuestionAdmin(admin.ModelAdmin):
+    # 字段集合fieldsets中每一个元组的第一个元素是该字段集合的标题
     fieldsets = [
         (None,               {'fields': ['question_text']}),
         ('Date information', {'fields': ['pub_date']}),
@@ -19,4 +21,5 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ['question_text']
 
 
+# 将QuestionAdmin作为第二个参数传递给admin.site.register()，第一个参数则是Question模型本身
 admin.site.register(Question, QuestionAdmin)
