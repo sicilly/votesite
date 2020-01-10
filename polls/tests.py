@@ -11,7 +11,7 @@ class QuestionMethodTests(TestCase):
         """最近一天内的问卷，返回True"""
         time = timezone.now() - datetime.timedelta(hours=23, minutes=59, seconds=59)
         recent_question = Question(pub_date=time)
-        self.assertIs(recent_question.was_published_recently(),True)
+        self.assertIs(recent_question.was_published_recently(), True)
 
         """只要是超过1天的问卷，返回False"""
         time = timezone.now() - datetime.timedelta(days=1, seconds=1)
